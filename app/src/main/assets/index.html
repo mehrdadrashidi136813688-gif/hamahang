@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#190632">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>هماهنگ | خدمات مراسم</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="splash" class="splash" aria-label="صفحه آغاز هماهنگ">
+ <img class="splash-art" src="images/splash-luxury.jpg" alt="">
+ <div class="splash-bottom"><div class="splash-progress"><span></span></div><p>در حال آماده‌سازی هماهنگ…</p><button onclick="hideSplash()">ورود به برنامه</button></div>
+</div>
+<header class="header">
+ <div class="brand"><img class="brandmark" src="images/brand-mark.png" alt="لوگوی هماهنگ"><div><b>هماهنگ</b><small>مراسمت، با سلیقه تو</small></div></div>
+ <div class="header-actions"><button class="city-chip" onclick="alert('انتخاب شهر در نسخه آنلاین فعال می‌شود.')">⌖ نیشابور</button><button class="notify" onclick="alert('اعلان جدیدی ندارید.')">♧<i>۳</i></button><button class="profile" onclick="show('profile')">♙</button></div>
+</header>
+<main>
+<section id="home" class="screen active">
+ <div class="home-hero">
+  <img src="images/home-hero.jpg" alt="مراسم باشکوه" class="hero-image">
+  <div class="hero-shade"></div>
+  <div class="hero-copy"><span class="gold-kicker">هماهنگ، همراه روزهای خاص</span><h1>مراسم رؤیایی<br><em>خودت را بساز!</em></h1><p>همه خدمات مراسم، یک‌جا و هماهنگ</p><button class="gold-btn" onclick="show('categories')">انتخاب خدمات <span>←</span></button></div>
+ </div>
+ <div class="homa-short" onclick="show('wallet')"><img src="images/brand-mark.png" alt="هما"><div><small>اعتبار هما</small><b id="homeHomaBalance">۲٫۴ هما</b><span>برای خدمات و پاداش‌ها</span></div><div class="homa-short-arrow">›</div></div>
+ <div class="searchbar"><span>⌕</span><input id="searchInput" placeholder="خدمت یا ارائه‌دهنده را جستجو کن"><button onclick="searchCategories()">جستجو</button></div>
+ <div class="section-title"><div><small>برای مراسمت</small><h2>خدمات پرطرفدار</h2></div><button class="text-btn" onclick="show('categories')">همه خدمات ←</button></div>
+ <div class="category-grid home-grid" id="homeCategories"></div>
+ <div class="feature-strip dance-strip" onclick="openCategory('کلاس رقص')"><img src="images/cat-dance.jpg" alt="کلاس رقص"><div><small>مردان، زنان و زوج‌ها</small><b>کلاس رقص</b><span>مشاهده و ثبت‌نام ←</span></div></div>
+ <div class="section-title"><div><small>قدم بعدی</small><h2>برنامه مراسمت</h2></div></div>
+ <div class="shortcut-grid"><button onclick="show('planner')"><span>✦</span><b>برنامه‌ریزی مراسم</b><small>چک‌لیست و بودجه</small></button><button onclick="show('partner')"><span>🤝</span><b>ثبت خدمات</b><small>همکاری با هماهنگ</small></button></div>
+</section>
+<section id="categories" class="screen">
+ <div class="page-head"><span class="gold-kicker">انتخاب و هماهنگی</span><h1>دسته‌بندی خدمات</h1><p>خدمت موردنظرت را انتخاب کن؛ نمونه‌کار و ارائه‌دهندگان را ببین.</p></div>
+ <div class="feature-strip dance-strip" onclick="openCategory('کلاس رقص')"><img src="images/cat-dance.jpg" alt="کلاس رقص"><div><small>مردان، زنان و زوج‌ها</small><b>کلاس رقص</b><span>مشاهده و ثبت‌نام ←</span></div></div>
+ <div class="category-grid full-grid" id="allCategories"></div>
+</section>
+<section id="categoryDetail" class="screen">
+ <button class="back" onclick="show('categories')">← برگشت به دسته‌ها</button>
+ <div class="detail-head" id="detailHead"></div>
+ <div class="section-title"><div><small>ارائه‌دهندگان</small><h2>فعالان این حوزه</h2></div><button class="text-btn" onclick="toggleCategoryFilter()">فیلترها</button></div>
+ <div id="providerResults" class="provider-grid"></div>
+</section>
+<section id="wallet" class="screen">
+ <div class="page-head"><span class="gold-kicker">باشگاه هما</span><h1>اعتبار و پاداش‌ها</h1><p>هماهای نمایشی این نسخه در گوشی ذخیره می‌شوند؛ اعتبار واقعی هنوز متصل نیست.</p></div>
+ <div class="homa-wallet"><div class="homa-wallet-head"><div><small>موجودی هما</small><h2><span id="homaBalance">۲٫۴</span> <em>هما</em></h2><p id="homaEquivalent">۲٬۴۰۰٬۰۰۰ تومان اعتبار خدمات (نمایشی)</p></div><img src="images/brand-mark.png" alt="توکن هما"></div>
+ <div class="reward-progress"><div class="progress-caption"><span>تا پاداش بعدی</span><b><span id="homaProgressText">۸۰٪</span></b></div><div class="progress-track"><span id="homaProgressBar"></span></div><small>هدف: ۳ هما</small></div>
+ <button class="homa-use-btn" onclick="show('categories')">استفاده از هما برای خدمات <span>←</span></button>
+ </div>
+ <div class="section-title"><div><small>فعالیت‌های پاداش</small><h2>هما جمع کن</h2></div></div>
+ <div id="homaMissions" class="missions"></div>
+ <div class="homa-note"><span>💡</span><p>در نسخه نمایشی، هر ۱ هما معادل ۱٬۰۰۰٬۰۰۰ تومان اعتبار خدمات در نظر گرفته شده است. پاداش‌ها هنوز به پرداخت واقعی متصل نیستند.</p></div>
+ <div class="section-title"><h2>تراکنش‌های آزمایشی</h2></div><div id="walletTransactions" class="list-menu"></div>
+</section>
+<section id="scan" class="screen"><div class="page-head"><span class="gold-kicker">هماهنگ</span><h1>اسکن QR</h1><p>اسکن کد همکاران یا پکیج‌ها در نسخه بعدی فعال خواهد شد.</p></div><div class="scan-card"><div class="scan-frame"><span></span></div><b>اسکنر هنوز فعال نیست</b><button class="gold-btn" onclick="show('categories')">رفتن به خدمات</button></div></section>
+<section id="partner" class="screen">
+ <div class="page-head"><span class="gold-kicker">ویژه ارائه‌دهندگان خدمات</span><h1>پنل همکاران</h1><p>برای ثبت نمونه‌کار، قیمت و مدیریت درخواست‌ها.</p></div>
+ <div class="partner-card"><span class="big-icon">🤝</span><h2>به خانواده هماهنگ بپیوند</h2><p>عکاس، تالار، گل‌فروش، خواننده، نوازنده و تمام فعالان مراسم می‌توانند صفحه اختصاصی داشته باشند.</p><button onclick="show('providerRegister')">ثبت‌نام به‌عنوان همکار</button></div>
+ <div class="list-menu"><div onclick="show('providerRegister')">🖼️ <span>ثبت نمونه‌کار و گالری</span> <b>›</b></div><div onclick="show('providerRegister')">💵 <span>تعریف قیمت و پکیج</span> <b>›</b></div><div onclick="show('providerRegister')">📆 <span>مدیریت درخواست و رزرو</span> <b>›</b></div><div onclick="show('admin')">🪪 <span>پنل مدیریت (دمو)</span> <b>›</b></div></div>
+</section>
+<section id="profile" class="screen">
+ <div class="page-head"><span class="gold-kicker">حساب کاربری</span><h1>حساب من</h1><p>پروفایل آزمایشی در همین گوشی ذخیره می‌شود.</p></div>
+ <div class="profile-top"><img src="images/brand-mark.png" alt="هما"><div><b id="profileTitle">خوش آمدی به هماهنگ</b><small>پروفایل و مراسمت را مدیریت کن</small></div></div>
+ <div class="login-card"><label>نام و نام خانوادگی</label><input id="userName" placeholder="نام شما"><label>شماره موبایل</label><input id="userPhone" placeholder="09xxxxxxxxx" inputmode="tel"><button onclick="saveProfile()">ذخیره پروفایل آزمایشی</button><small>کد پیامکی واقعی هنوز متصل نیست.</small></div>
+ <div class="list-menu profile-menu"><div onclick="show('planner')">✦ <span>برنامه‌ریزی مراسم</span><b>›</b></div><div onclick="show('partner')">🤝 <span>پنل همکاران</span><b>›</b></div><div onclick="show('wallet')">◈ <span>اعتبار هما و پاداش‌ها</span><b>›</b></div><div onclick="show('admin')">⚙ <span>پنل مدیریت (دمو)</span><b>›</b></div></div>
+ <div class="section-title"><h2>مراسم من</h2></div><div id="myProfileSummary" class="empty-state">پروفایل هنوز ذخیره نشده.</div>
+</section>
+<section id="planner" class="screen"><div class="page-head"><span class="gold-kicker">برنامه‌ریزی مراسم</span><h1>مراسم من</h1><p>جزئیات رو ثبت کن و کارهای ضروری رو پیگیری کن.</p></div><div class="login-card"><label>عنوان مراسم</label><input id="eventTitle" placeholder="مثلاً جشن عروسی"><label>تاریخ مراسم</label><input id="eventDate" type="date"><label>شهر</label><input id="eventCity" placeholder="شهر برگزاری"><label>بودجه تقریبی (تومان)</label><input id="eventBudget" inputmode="numeric" placeholder="مثلاً 500000000"><button onclick="saveEvent()">ذخیره برنامه</button></div><div class="section-title"><h2>چک‌لیست</h2></div><div id="eventChecklist" class="list-menu"></div></section>
+<section id="providerRegister" class="screen"><div class="page-head"><span class="gold-kicker">ثبت درخواست همکاری</span><h1>ثبت کسب‌وکار</h1><p>اطلاعات برای بررسی مدیر ارسال می‌شود. در این نسخه آزمایشی داخل مرورگر ذخیره خواهد شد.</p></div><div class="login-card"><label>نام کسب‌وکار / نام شما</label><input id="providerName" placeholder="نام مجموعه"><label>دسته خدمات</label><select id="providerCategory"></select><label>شهر</label><input id="providerCity" placeholder="شهر"><label>شماره تماس</label><input id="providerPhone" inputmode="tel" placeholder="09xxxxxxxxx"><label>توضیحات خدمات</label><textarea id="providerDescription" rows="3" placeholder="خدمات، تجربه، پکیج‌ها... "></textarea><label>قیمت پایه (تومان)</label><input id="providerPrice" inputmode="numeric" placeholder="قیمت پایه"><button onclick="submitProvider()">ارسال درخواست همکاری</button></div></section>
+<section id="admin" class="screen"><div class="page-head"><span class="gold-kicker">مدیریت هماهنگ</span><h1>پنل مدیر — حالت آزمایشی</h1><p>در نسخه واقعی، این بخش فقط برای حساب مدیر و با احراز هویت امن در دسترس خواهد بود.</p></div><div class="section-title"><h2>درخواست‌های همکاران</h2></div><div id="adminProviders" class="list-menu"></div><div class="section-title"><h2>کاربران و مراسم</h2></div><div id="adminStats" class="stats-grid"></div></section>
+</main>
+<nav class="bottom-nav">
+ <button class="nav active" onclick="show('home')"><span>⌂</span>خانه</button><button class="nav" onclick="show('categories')"><span>▦</span>دسته‌بندی‌ها</button><button class="nav scan-nav" onclick="show('scan')"><span>⌗</span>اسکن</button><button class="nav" onclick="show('wallet')"><span>◈</span>کیف پول</button><button class="nav" onclick="show('profile')"><span>♙</span>حساب</button>
+</nav>
+<script src="app.js"></script>
+</body></html>

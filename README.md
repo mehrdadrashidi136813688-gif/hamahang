@@ -1,44 +1,24 @@
-# Hamahang — هم‌آهنگ
+# Hamahang — Luxury UI update (Neshabur)
 
-نسخه آزمایشی آفلاین. داده‌ها فقط روی همان گوشی ذخیره می‌شوند.
+Android WebView app for wedding/event service discovery. This package includes the updated purple/gold interface and the signed-release GitHub Actions workflow.
 
-## ورود آزمایشی
+## Version
+- `versionCode`: 4
+- `versionName`: 1.2 (kept unchanged)
+- `applicationId`: `com.hamahang.app`
 
-- شماره مدیر: `09156170125` (معادل `+989156170125`)
-- کد OTP آزمایشی برای همه: `1234`
-- PIN مدیر: `2580`
-- کاربران دیگر: با هر شماره `09xxxxxxxxx` و OTP `1234` ثبت‌نام می‌کنند.
+## UI changes
+- 8-second luxury splash with skip option
+- Purple/gold Home and service categories based on the approved design references
+- Dance classes category for men, women, and couples
+- Homa credits/rewards demo UI, locally stored only
+- Shared logo artwork in header, Homa token display, and launcher icon
+- Existing provider registration, event planner, profile, and demo admin sections retained
 
-## ساخت APK با GitHub Actions (روش آسان، بدون نیاز به نصب اندروید استودیو)
+## Build
+GitHub Actions workflow: `.github/workflows/blank.yml`.
+Run **Build Hamahang Signed APK** and download the `hamahang-release-apk-v1.2` artifact.
+The workflow uses the repository's configured GitHub Actions Secrets to sign the Release APK. No keystore or password is included in this archive.
 
-1. محتویات این پوشه را داخل ریپازیتوری `hamahang` در گیت‌هاب آپلود/پوش کنید (برانچ `main`).
-2. در گیت‌هاب به تب **Actions** بروید.
-3. ورک‌فلو **Build Android APK** را انتخاب کنید.
-4. دکمه **Run workflow** را بزنید و منتظر سبز شدن بیلد بمانید.
-5. در صفحه همان اجرا، از بخش **Artifacts** فایل `hamahang-apk` را دانلود کنید.
-6. ZIP را باز کنید و `app-debug.apk` را روی گوشی اندروید نصب کنید.
-   اگر اندروید اجازه نداد، برای برنامه Files/مرورگر گزینه **Install unknown apps** را فعال کنید.
-
-## اجرای محلی
-
-```bash
-./gradlew assembleDebug
-# خروجی: app/build/outputs/apk/debug/app-debug.apk
-```
-
-## ساختار پروژه
-
-```
-settings.gradle
-build.gradle
-gradle.properties
-app/build.gradle
-app/src/main/AndroidManifest.xml
-app/src/main/java/com/hamahang/app/MainActivity.kt
-.github/workflows/build-apk.yml
-```
-
-## توجه
-
-- OTP واقعی ارسال نمی‌شود، همیشه `1234` است.
-- حساب‌ها بین گوشی‌ها مشترک نیستند (SharedPreferences محلی).
+## Prototype limitations
+SMS login, backend/database, real payments, QR scanning, live booking/notifications, and actual Homa redemption are not connected. Demo profile/event/reward data is saved locally in the app.
